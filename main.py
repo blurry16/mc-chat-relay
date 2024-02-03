@@ -19,9 +19,7 @@ async def on_ready():  # Function executed when the client connects and is ready
                                      name="latest.log"))  # Activity changing
     while True:  # Infinite loop to continuously check for logs and send messages
         logs = await checklen()  # Call the checklen function to get new logs (presumably from a Minecraft server)
-        message = f"```{logs}```"  # Format the logs as a message
-        if len(message) <= 2000:
-            await client.get_channel(config["channel"]).send(message)  # Send the message to a specific Discord channel
-        else:
-            await client.get_channel(config["channel"]).send(message[:1997] + "```")
+        message = f"```{logs}```"
+        await client.get_channel(config["channel"]).send(message)
+
 client.run(config["token"])  # Bot run

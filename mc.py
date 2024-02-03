@@ -38,7 +38,7 @@ async def checklen():
         async for log in getlogs(logfile):
             not_sent.append(log)
 
-            if len(not_sent) >= 25:  # Send logs once a batch of 25 is collected
+            if len("".join(not_sent)) >= 1000:  # Send logs once length of message is more than 1000
                 string = "".join(not_sent)  # Concatenate logs efficiently
                 return string
 
