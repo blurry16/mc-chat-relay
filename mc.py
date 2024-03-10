@@ -1,4 +1,8 @@
 import asyncio  # Import the asyncio library for asynchronous operations
+import json  # Import the JSON library for interacting with .json files
+
+config = json.load(open("config.json"))
+logpath = config["log-path"]
 
 
 async def follow(thefile):
@@ -34,11 +38,11 @@ async def checklen():
 
     not_sent = []  # List to store chat logs
 
-    with open(r"C:\MultiMC\instances\1.20.2 copy 1\.minecraft\logs\latest.log", "r", encoding="utf-8") as logfile:
+    with open(logpath, "r", encoding="utf-8") as logfile:
         async for log in getlogs(logfile):
-            not_sent.append(log)
-
-            if len("".join(not_sent)) >= 1000:  # Send logs once length of message is more than 1000
+            if log[11] == "<":
+                not_sent.append(log)
+            if len("".join(not_sent)) >= 1500:  # Send logs once length of message is more than 1000
                 string = "".join(not_sent)  # Concatenate logs efficiently
                 return string
 

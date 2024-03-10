@@ -1,8 +1,6 @@
 import discord  # Import the Discord library for interacting with Discord
-import json  # Import the JSON library for interacting with .json files
-from mc import checklen  # Import the checklen function from the mc module
+from mc import checklen, config  # Import the checklen function and config object from the mc module
 
-config = json.load(open("config.json"))
 
 intents = discord.Intents.default()  # Create a default intents object
 intents.message_content = True  # Enable the message_content intent for reading messages
@@ -21,5 +19,6 @@ async def on_ready():  # Function executed when the client connects and is ready
         logs = await checklen()  # Call the checklen function to get new logs (presumably from a Minecraft server)
         message = f"```{logs}```"
         await client.get_channel(config["channel"]).send(message)
+
 
 client.run(config["token"])  # Bot run

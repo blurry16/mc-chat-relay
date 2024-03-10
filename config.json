@@ -1,4 +1,5 @@
 {
-    "token": "your_token_here",
-    "channel": 1203109983860953179
+    "token": "your discord bot token here",
+    "channel": "your discord channel id in int here",
+    "log-path": "your log path here"
 }
