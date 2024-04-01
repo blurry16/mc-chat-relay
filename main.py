@@ -15,10 +15,14 @@ async def on_ready():  # Function executed when the client connects and is ready
                                  activity=discord.Activity(
                                      type=discord.ActivityType.watching,
                                      name="latest.log"))  # Activity changing
+    sent = 0
+
     while True:  # Infinite loop to continuously check for logs and send messages
         logs = await checklen()  # Call the checklen function to get new logs (presumably from a Minecraft server)
         message = f"```{logs}```"
         await client.get_channel(config["channel"]).send(message)
+        sent += 1
+        print(f"{sent} messages sent since launch.")
 
 
 client.run(config["token"])  # Bot run

@@ -40,8 +40,7 @@ async def checklen():
 
     with open(logpath, "r", encoding="utf-8") as logfile:
         async for log in getlogs(logfile):
-            if log[11] == "<":
-                not_sent.append(log)
+            not_sent.append(log)
             if len("".join(not_sent)) >= 1500:  # Send logs once length of message is more than 1000
                 string = "".join(not_sent)  # Concatenate logs efficiently
                 return string
