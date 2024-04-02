@@ -1,5 +1,0 @@
-{
-    "token": "your discord bot token here",
-    "channel": "your discord channel id in int here",
-    "log-path": "your log path here"
-}
